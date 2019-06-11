@@ -1,6 +1,7 @@
 import serial as s
 import time
 import csv
+import os
 
 
 def main_procedure():
@@ -10,7 +11,7 @@ def main_procedure():
     counter = 0
     timeout = time.time()+5
     while time.time() < timeout:
-        ser = s.Serial('/dev/ttyACM1', 9600)
+        ser = s.Serial('/dev/ttyACM0', 9600)
         string = ser.readline().decode('utf-8')
         print(string)
         if counter >= 1:
@@ -21,10 +22,18 @@ def main_procedure():
 
 
 def csv_writer(l):
-    with open("./results/resultsExperiment1.csv", 'a') as csvfile:
-        wr = csv.writer(csvfile, delimiter=',',
-                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        wr.writerow(l)
+    try:
+        with open("./results/resultsExperiment1.csv", 'a') as csvfile:
+            wr = csv.writer(csvfile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            wr.writerow(l)
+    except IOError as e:
+        print("File doesn't exist. Creating file...")
+        try:
+            os.mkdir("./results")
+        except Exception:
+            pass
+        csv_writer(l)
 
 
 name = input("Enter the name of the participant: ")

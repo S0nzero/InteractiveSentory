@@ -1,6 +1,7 @@
 import serial as s
 import time
 import csv
+import os
 
 
 def main_procedure():
@@ -14,6 +15,8 @@ def main_procedure():
             counter += 1
         nb_sensors = input("Input the number of sensors tested: ")
     nb_sensors = int(nb_sensors)
+    name = input("Please enter the name of the participant: ")
+    csv_writer([name])
     counter = 0
     for i in range(nb_sensors):
         results_list.append([])
@@ -36,10 +39,17 @@ def main_procedure():
 
 
 def csv_writer(l):
-    with open("./results/resultsExperiment2.csv", 'a') as csvfile:
-        wr = csv.writer(csvfile, delimiter=',',
-                        quotechar='|', quoting=csv.QUOTE_MINIMAL)
-        wr.writerow(l)
-
+    try:
+        with open("./results/resultsExperiment2.csv", 'a') as csvfile:
+            wr = csv.writer(csvfile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            wr.writerow(l)
+    except IOError:
+        print("File doesn't exist. Creating file...")
+        try:
+            os.mkdir("./results")
+        except Exception:
+            pass
+        csv_writer(l)
 
 main_procedure()

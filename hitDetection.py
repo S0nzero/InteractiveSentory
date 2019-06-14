@@ -37,12 +37,3 @@ class HitDetector:
 
     def new_confidence(self, min_value, max_value):
         return max_value-(((max_value - min_value)/self.intervals)*len(self.pastValuesList))
-
-
-HD = HitDetector(50, 15)
-while True:
-    HD.new_value(float(input("Rentrez votre valeur !")))
-    if HD.pastValuesList:
-        print(HD.confidence_interval())
-        print(HD.confidence)
-    print(HD.pastValuesList)

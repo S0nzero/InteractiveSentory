@@ -1,7 +1,7 @@
 const int ledPin = 13;      // LED connected to digital pin 13
 const int knockSensor0 = A0; // the piezo is connected to analog pin 0
 const int knockSensor1 = A1; // the piezo is connected to analog pin 0
-const int threshold = 50; 
+const int threshold = 0; 
 
 int sensorReading0 = 0; // variable to store the value read from the sensor pin
 int sensorReading1 = 1; // variable to store the value read from the sensor pin

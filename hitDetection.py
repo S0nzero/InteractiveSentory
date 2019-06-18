@@ -2,6 +2,21 @@ from scipy.stats import sem, t
 from scipy import mean
 
 
+class HitDetectorManager:
+    HitDetectorList = []
+    numberSensors = 0
+
+    def __init__(self, number_sensors, threshold, intervals):
+        self.numberSensors = number_sensors
+        self.HitDetectorList = []
+        for i in range(number_sensors):
+            self.HitDetectorList.append(HitDetector(threshold, intervals))
+
+    def new_value(self, result):
+        sensor_index = int(result[0])
+        return self.HitDetectorList[sensor_index].new_value(int(result[1]))
+
+
 class HitDetector:
     pastValuesList = []
     confidence = 0

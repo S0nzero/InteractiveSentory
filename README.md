@@ -22,9 +22,9 @@ computing it. Basically, the following steps happen:
 - Python gets this data and updates the past data it had in a hitDetector object
 - If the computing tells us that a hit was detected, we send a GPIO input to the brightsigns to update the presentation
 
-##Code Explanation
+## Code Explanation
 
-###HitDetectorManager class
+#### HitDetectorManager class
 
 This class is simply useful for the user: There's no need anymore to manually create the HitDetectors, everything
 is handled by this class. The constructor takes the number of sensors in parameter
@@ -32,7 +32,7 @@ is handled by this class. The constructor takes the number of sensors in paramet
 Everytime a new value is sent by the Arduino, we give the result to the function new_value, which redirects the result 
 to the right HitDetector object
 
-###HitDetector class
+#### HitDetector class
 
 This class aims to compute the values sent by the sensors, in order to detect when there's a hit on a sensor. To do so,
 we use the following method:
@@ -52,7 +52,7 @@ to the list
 
 [1] The Confidence interval is (AVG-SD - d, AVG+SD + d)
 
-###finalExperience.py
+#### finalExperience.py
 
 This file is the main of the project. Basically:
 - Ask the user how much sensors are used (Useful for testing)

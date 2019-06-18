@@ -1,7 +1,7 @@
 # InteractiveSentory
 A github to make the Sentory device interactive
 
-##Requirements
+## Requirements
 
 - Python 3.6 
 - Serialg

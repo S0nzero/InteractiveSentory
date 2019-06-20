@@ -22,19 +22,21 @@ def procedure():
     while True:
         ser = s.Serial('/dev/ttyACM0', 9600)
         result = ser.readline().decode('utf-8').split('/', 1)
-        sensor = result[0]
-        resultofsensor = result[1][:-2]
-        print(sensor, sensor.isdigit(), result[1], resultofsensor.isdigit())
-
-        if (len(result) == 2) and (sensor.isdigit()) and (resultofsensor.isdigit()):
-            if hdm.new_value(result):
-                print("Hit Detected on "+result[0]+", sending GPIO signal")
-                GPIO.output(5,1)
-                time.sleep(0.5)
-                GPIO.output(5,0)
-                time.sleep(0.5)
+        if len(result) == 2:
+            sensor = result[0]
+            resultofsensor = result[1][:-2]
+            print(sensor, sensor.isdigit(), result[1], resultofsensor.isdigit())
+            if (sensor.isdigit()) and (resultofsensor.isdigit()):
+                if hdm.new_value(result):
+                    print("Hit Detected on "+result[0]+", sending GPIO signal")
+                    GPIO.output(5,1)
+                    time.sleep(0.5)
+                    GPIO.output(5,0)
+                    time.sleep(0.5)
+                else:
+                    print("No Hit detected")
             else:
-                print("No Hit detected")
+                print("Nope")
         else:
             print("Nope")
 

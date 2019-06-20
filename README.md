@@ -4,7 +4,7 @@ A github to make the Sentory device interactive
 ## Requirements
 
 - Python 3.6 
-- Serialg
+- Serial
 - Scipy
 - RPI.GPIO 
 
@@ -47,7 +47,6 @@ If there's between b and c values: We check if the value is bigger than the conf
 
 If there c values in the list, and what was recieved isn't a hit, we pop the head of the list and add the new value 
 to the list
-
 
 
 [1] The Confidence interval is (AVG-SD - d, AVG+SD + d)

@@ -27,7 +27,7 @@ def csv_writer(l):
             wr = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
             wr.writerow(l)
-    except IOError as e:
+    except IOError:
         print("File doesn't exist. Creating file...")
         try:
             os.mkdir("./results")

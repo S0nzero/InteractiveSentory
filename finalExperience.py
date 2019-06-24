@@ -25,7 +25,7 @@ def procedure():
         if len(result) == 2:
             sensor = result[0]
             resultofsensor = result[1][:-2]
-            print(sensor, sensor.isdigit(), result[1], resultofsensor.isdigit())
+            print(sensor, result[1])
             if (sensor.isdigit()) and (resultofsensor.isdigit()):
                 if hdm.new_value(result):
                     print("Hit Detected on "+result[0]+", sending GPIO signal")

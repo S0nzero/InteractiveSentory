@@ -32,6 +32,7 @@ class HitDetector:
         m = mean(self.pastValuesList)
         std_err = sem(self.pastValuesList)
         h = std_err * t.ppf((1 + self.confidence) / 2, n - 1)
+        print(m-(h+10), m+(h+10))
         return m-(h+10), m+(h+10)
 
     def new_value(self, new):
@@ -40,7 +41,7 @@ class HitDetector:
             self.pastValuesList.append(new)
             return False
         else:
-            st, end = self.confidence_interval(), 15
+            st, end = self.confidence_interval()
             if new > end and new > self.threshold:
                 self.pastValuesList = []
                 return True

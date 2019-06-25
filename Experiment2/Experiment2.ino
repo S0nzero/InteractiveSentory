@@ -1,10 +1,10 @@
-const int ledPin = 13;      // LED connected to digital pin 13
-const int knockSensor0 = A0; // the piezo is connected to analog pin 0
-const int knockSensor1 = A1; // the piezo is connected to analog pin 0
-const int threshold = 0; 
+const int threshold = 0;
 
-int sensorReading0 = 0; // variable to store the value read from the sensor pin
-int sensorReading1 = 1; // variable to store the value read from the sensor pin
+// Add enough variables for every sensor plugged in the arduino.
+const int knockSensor0 = A0;
+const int knockSensor1 = A1;
+int sensorReading0 = 0;
+int sensorReading1 = 0;
 int ledState = LOW; 
 
 void setup() {
@@ -12,28 +12,9 @@ void setup() {
 }
 
 void loop() {
+    // Add enough lines for every sensor plugged in the Arduino
     sensorReading0 = analogRead(knockSensor0);
     sensorReading1 = analogRead(knockSensor1);
-  
-    if (sensorReading0 >= threshold && sensorReading1 < threshold) {
-      Serial.println(String("0/")+sensorReading0);
-      delay(100);
-    }
-      
-    else if (sensorReading0 >= threshold && sensorReading1 >= threshold) {
-      // toggle the status of the ledPin:
-      if(sensorReading0 > sensorReading1){
-        Serial.println(String("0/")+sensorReading0);
-        delay(100);
-      }
-      else{
-        Serial.println(String("1/")+sensorReading1);
-        delay(100);
-      }
-    }
-    
-    else if(sensorReading0 < threshold && sensorReading1 >= threshold){
-      Serial.println(String("1/")+sensorReading1);
-        delay(100);
-    }
+    Serial.println(sensorReading0+String("/")+sensorReading1);   
+    delay(100);
 }

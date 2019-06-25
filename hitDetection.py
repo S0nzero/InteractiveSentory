@@ -13,8 +13,15 @@ class HitDetectorManager:
             self.HitDetectorList.append(HitDetector(threshold, intervals))
 
     def new_value(self, result):
-        sensor_index = int(result[0])
-        return self.HitDetectorList[sensor_index].new_value(int(result[1]))
+        hit_detected = False
+        for i in range(len(result)):
+            if self.HitDetectorList[i].new_value(int(result[i])):
+                hit_detected = True
+        return hit_detected
+
+    def print_values(self):
+        for i in self.HitDetectorList:
+            print(i.pastValuesList)
 
 
 class HitDetector:

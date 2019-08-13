@@ -5,6 +5,7 @@ from scipy import mean
 class HitDetectorManager:
     HitDetectorList = []
     numberSensors = 0
+    lastButtonHit = None
 
     def __init__(self, number_sensors, threshold, intervals):
         self.numberSensors = number_sensors
@@ -17,6 +18,7 @@ class HitDetectorManager:
         for i in range(len(result)):
             if self.HitDetectorList[i].new_value(int(result[i])):
                 hit_detected = True
+                self.lastButtonHit = i
         return hit_detected
 
     def print_values(self):
@@ -39,7 +41,6 @@ class HitDetector:
         m = mean(self.pastValuesList)
         std_err = sem(self.pastValuesList)
         h = std_err * t.ppf((1 + self.confidence) / 2, n - 1)
-        print(m-(h+10), m+(h+10))
         return m-(h+10), m+(h+10)
 
     def new_value(self, new):
